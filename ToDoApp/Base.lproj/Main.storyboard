@@ -1,24 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SSZ-bV-Itf">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--To Do List-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomePageViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wU-EJ-byH">
+                                <rect key="frame" x="132.66666666666666" y="406" width="127.99999999999997" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="box-Fe-UyR"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="i36-uX-LA0"/>
+                                    <constraint firstAttribute="height" constant="40" id="nZu-Z7-jwt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="DETAIL" cornerStyle="dynamic">
+                                    <backgroundConfiguration key="background" cornerRadius="10">
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnDetailAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pg5-FV-it4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9wU-EJ-byH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MGm-hY-onS"/>
+                            <constraint firstItem="9wU-EJ-byH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Rl8-OJ-Yvf"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="To Do List" id="XU1-NB-ooo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jwd-fm-5JP">
+                            <connections>
+                                <segue destination="Oks-lP-gLV" kind="show" id="dte-3u-Iuf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="mbg-Ae-hRf" kind="show" identifier="toDetail" id="Bgg-so-X4c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="840" y="-35"/>
+        </scene>
+        <!--Add To Do-->
+        <scene sceneID="38R-h3-qhr">
+            <objects>
+                <viewController storyboardIdentifier="ToDoSaveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oks-lP-gLV" customClass="ToDoAddViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UPD-8B-RsU">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To do" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Gd-Pk-53X">
+                                <rect key="frame" x="50" y="213.33333333333334" width="293" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrB-kL-bNG">
+                                <rect key="frame" x="132" y="303.33333333333331" width="129" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="s2S-yv-LIa"/>
+                                    <constraint firstAttribute="width" constant="129" id="wfM-EQ-RWC"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="SAVE" cornerStyle="dynamic">
+                                    <backgroundConfiguration key="background" cornerRadius="10">
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnSaveAct:" destination="Oks-lP-gLV" eventType="touchUpInside" id="xJA-kJ-GbH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FaO-hp-U8s"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="KrB-kL-bNG" firstAttribute="top" secondItem="5Gd-Pk-53X" secondAttribute="bottom" constant="50" id="ExN-Uq-lNh"/>
+                            <constraint firstItem="5Gd-Pk-53X" firstAttribute="leading" secondItem="FaO-hp-U8s" secondAttribute="leading" constant="50" id="lOd-Eu-Kji"/>
+                            <constraint firstItem="FaO-hp-U8s" firstAttribute="trailing" secondItem="5Gd-Pk-53X" secondAttribute="trailing" constant="50" id="po0-nA-9Pc"/>
+                            <constraint firstItem="5Gd-Pk-53X" firstAttribute="top" secondItem="FaO-hp-U8s" secondAttribute="top" constant="50" id="sGg-Sf-Ezj"/>
+                            <constraint firstItem="KrB-kL-bNG" firstAttribute="centerX" secondItem="UPD-8B-RsU" secondAttribute="centerX" id="wwf-IM-61n"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add To Do" id="bKL-3o-QPa"/>
+                    <connections>
+                        <outlet property="txtToDo" destination="5Gd-Pk-53X" id="NOj-S0-SJC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xwu-GG-BA7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="-351"/>
+        </scene>
+        <!--To Do Detail-->
+        <scene sceneID="K5p-Bj-qj5">
+            <objects>
+                <viewController storyboardIdentifier="ToDoDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mbg-Ae-hRf" customClass="ToDoDetailViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1mG-oD-1D8">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To do" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="naQ-hV-o0g">
+                                <rect key="frame" x="50" y="213.33333333333334" width="293" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VtW-dl-JGQ">
+                                <rect key="frame" x="132" y="303.33333333333331" width="129" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8dq-Eq-yZl"/>
+                                    <constraint firstAttribute="width" constant="129" id="gXZ-YS-L4N"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="UPDATE" cornerStyle="dynamic">
+                                    <backgroundConfiguration key="background" cornerRadius="10">
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnSaveAct:" destination="Oks-lP-gLV" eventType="touchUpInside" id="0Wf-Vt-C8M"/>
+                                    <action selector="btnUpdateAct:" destination="mbg-Ae-hRf" eventType="touchUpInside" id="lwi-qu-AtX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="F83-lo-9xO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="naQ-hV-o0g" firstAttribute="top" secondItem="F83-lo-9xO" secondAttribute="top" constant="50" id="EKm-HM-k4v"/>
+                            <constraint firstItem="VtW-dl-JGQ" firstAttribute="top" secondItem="naQ-hV-o0g" secondAttribute="bottom" constant="50" id="Urh-VF-y8J"/>
+                            <constraint firstItem="F83-lo-9xO" firstAttribute="trailing" secondItem="naQ-hV-o0g" secondAttribute="trailing" constant="50" id="a7B-ih-lxp"/>
+                            <constraint firstItem="VtW-dl-JGQ" firstAttribute="centerX" secondItem="1mG-oD-1D8" secondAttribute="centerX" id="u4d-4g-akl"/>
+                            <constraint firstItem="naQ-hV-o0g" firstAttribute="leading" secondItem="F83-lo-9xO" secondAttribute="leading" constant="50" id="vRE-pt-boz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="To Do Detail" id="Mdl-48-xh2"/>
+                    <connections>
+                        <outlet property="txtToDo" destination="naQ-hV-o0g" id="gR5-0i-rwR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zzC-Ry-2Il" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="387"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6vL-V1-xYY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SSZ-bV-Itf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="d7y-AX-bPB">
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HHo-l4-ZNr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hPb-KC-bBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="72.51908396946564" y="-34.507042253521128"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

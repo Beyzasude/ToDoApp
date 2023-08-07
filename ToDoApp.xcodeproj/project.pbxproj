@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232BDB552A802D06003AFFC6 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232BDB542A802D06003AFFC6 /* ToDoCell.swift */; };
 		23D0AAC22A7ACA9A00CC9C9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D0AAC12A7ACA9A00CC9C9C /* AppDelegate.swift */; };
 		23D0AAC42A7ACA9A00CC9C9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D0AAC32A7ACA9A00CC9C9C /* SceneDelegate.swift */; };
 		23D0AAC62A7ACA9A00CC9C9C /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D0AAC52A7ACA9A00CC9C9C /* HomePageViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		232BDB542A802D06003AFFC6 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		23D0AABE2A7ACA9A00CC9C9C /* ToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D0AAC12A7ACA9A00CC9C9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23D0AAC32A7ACA9A00CC9C9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		232BDB532A802CB7003AFFC6 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				232BDB542A802D06003AFFC6 /* ToDoCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		23D0AAB52A7ACA9A00CC9C9C = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +87,7 @@
 		23D0AAD52A7ACAB500CC9C9C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				232BDB532A802CB7003AFFC6 /* TableView */,
 				23D0AAD82A7ACAD300CC9C9C /* Views */,
 			);
 			path = UI;
@@ -181,6 +192,7 @@
 			files = (
 				23D0AAC62A7ACA9A00CC9C9C /* HomePageViewController.swift in Sources */,
 				23D0AAC22A7ACA9A00CC9C9C /* AppDelegate.swift in Sources */,
+				232BDB552A802D06003AFFC6 /* ToDoCell.swift in Sources */,
 				23D0AAC42A7ACA9A00CC9C9C /* SceneDelegate.swift in Sources */,
 				23D0AADE2A7AD03E00CC9C9C /* ToDos.swift in Sources */,
 				23D0AADC2A7ACC6100CC9C9C /* ToDoDetailViewController.swift in Sources */,

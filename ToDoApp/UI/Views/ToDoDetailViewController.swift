@@ -11,6 +11,7 @@ class ToDoDetailViewController: UIViewController {
 
     @IBOutlet weak var txtToDo: UITextField!
     var toDo: ToDos?
+    var viewModel = ToDoDetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,18 +19,11 @@ class ToDoDetailViewController: UIViewController {
         if let td = toDo{
             txtToDo.text = td.name
         }
-
     }
 
     @IBAction func btnUpdateAct(_ sender: Any) {
         if let toDoName = txtToDo.text, let td = toDo{
-            update(id: td.id!, name: toDoName)
+            viewModel.update(id: td.id!, name: toDoName)
         }
-        
     }
-    
-    func update(id: Int, name:String){
-        print("Update To Do: \(id) - \(name)")
-    }
-    
 }

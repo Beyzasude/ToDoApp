@@ -11,6 +11,8 @@ class ToDoAddViewController: UIViewController {
 
     @IBOutlet weak var txtToDo: UITextField!
     
+    var viewModel = ToDoAddViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,12 +20,7 @@ class ToDoAddViewController: UIViewController {
     
     @IBAction func btnSaveAct(_ sender: Any) {
         if let toDo = txtToDo.text {
-            addTodo(toDo: toDo)
+            viewModel.addTodo(toDo: toDo)
         }
     }
-    
-    func addTodo(toDo: String) {
-        print("To do save : \(toDo)")
-    }
-    
 }

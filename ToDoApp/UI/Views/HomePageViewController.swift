@@ -13,6 +13,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var toDoList = [ToDos]()
+    var viewModel = HomePageViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +21,15 @@ class HomePageViewController: UIViewController {
         toDoTableView.delegate = self
         toDoTableView.dataSource = self
         
-        let t1 = ToDos(id: 1, name: "Buy movie tickets for friday")
-        let t2 = ToDos(id: 2, name: "Buy gift for mom")
-        let t3 = ToDos(id: 3, name: "Call Suzie")
-        
-        toDoList.append(t1)
-        toDoList.append(t2)
-        toDoList.append(t3)
+        _ = viewModel.toDoList.subscribe(onNext: {liste in
+            self.toDoList = liste
+            self.toDoTableView.reloadData()
+        })
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.uploadToDos()
     }
     
     /*@IBAction func btnDetailAct(_ sender: Any) {
@@ -47,7 +50,7 @@ class HomePageViewController: UIViewController {
 
 extension HomePageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Kişi Ara: \(searchText)")
+        viewModel.search(searchWord: searchText)
     }
 }
 
@@ -61,6 +64,7 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "toDoCell") as! ToDoCell
         
         cell.lblToDoName.text = toDo.name
+        
         return cell
     }
     
@@ -84,7 +88,7 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(cancelAction)
             let acceptAction = UIAlertAction(title: "Yes", style: .destructive) { action in
-                print("Deleted: \(toDo.name!)")
+                self.viewModel.delete(id: toDo.id!)
             }
             alert.addAction(acceptAction)
             

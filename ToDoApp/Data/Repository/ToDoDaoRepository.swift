@@ -12,33 +12,90 @@ class ToDoDaoRepository {
     
     var toDoList = BehaviorSubject<[ToDos]>(value: [ToDos]())
     
+    let db: FMDatabase?
+    
+    init() {
+        let filePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let databaseURL = URL(fileURLWithPath: filePath).appendingPathComponent("ToDosApp.sqlite")
+        db = FMDatabase(path: databaseURL.path)
+    }
+    
     func addTodo(toDo: String) {
-        print("To do save : \(toDo)")
+        db?.open()
+        
+        do{
+            try db!.executeUpdate("INSERT INTO toDos (name) VALUES (?)", values: [toDo])
+        }catch{
+            print(error.localizedDescription)
+        }
+        
+        db?.close()
     }
     
     func update(id: Int, name:String){
-        print("Update To Do: \(id) - \(name)")
+        db?.open()
+        
+        do{
+            try db!.executeUpdate("UPDATE toDos SET name = ? WHERE id = ? ", values: [name, id])
+        }catch{
+            print(error.localizedDescription)
+        }
+        
+        db?.close()
     }
     
     func delete(id: Int){
-        print("Delete To Do: \(id)")
+        db?.open()
+        
+        do{
+            try db!.executeUpdate("DELETE FROM toDos WHERE id = ?", values: [id])
+        }catch{
+            print(error.localizedDescription)
+        }
+        db?.close()
     }
     
     func search(searchWord: String){
-        print("Search To Do: \(searchWord)")
+        db?.open()
+        var liste = [ToDos]()
+        
+        do{
+            let result = try db!.executeQuery("SELECT * FROM toDos WHERE name LIKE '%\(searchWord)%'", values: nil)
+            
+            while result.next() {
+                let id = Int(result.string(forColumn: "id"))!
+                let name = result.string(forColumn: "name")!
+                
+                let toDo = ToDos(id: id, name: name)
+                liste.append(toDo)
+            }
+            toDoList.onNext(liste)//Tetikleme
+        }catch{
+            print(error.localizedDescription)
+        }
+        
+        db?.close()
     }
     
     func uploadToDos(){
-        var list = [ToDos]()
+        db?.open()
+        var liste = [ToDos]()
         
-        let t1 = ToDos(id: 1, name: "Buy movie tickets for friday")
-        let t2 = ToDos(id: 2, name: "Buy gift for mom")
-        let t3 = ToDos(id: 3, name: "Call Suzie")
+        do{
+            let result = try db!.executeQuery("SELECT * FROM toDos ", values: nil)
+            
+            while result.next() {
+                let id = Int(result.string(forColumn: "id"))!
+                let name = result.string(forColumn: "name")!
+                
+                let toDo = ToDos(id: id, name: name)
+                liste.append(toDo)
+            }
+            toDoList.onNext(liste)//Tetikleme
+        }catch{
+            print(error.localizedDescription)
+        }
         
-        list.append(t1)
-        list.append(t2)
-        list.append(t3)
-        
-        toDoList.onNext(list) // Tetikleme
+        db?.close()
     }
 }
